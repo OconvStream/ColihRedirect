@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startService() {
-        Intent it = new Intent();
-        startService(it);
+       // Intent it = new Intent(MainActivity.class, SigaMeService.class);
+        //startService(it);
 
     }
 }

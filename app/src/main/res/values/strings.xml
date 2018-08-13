@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Colih Redirect</string>
+    <string name="local_service_started">Local Service Started !</string>
 </resources>

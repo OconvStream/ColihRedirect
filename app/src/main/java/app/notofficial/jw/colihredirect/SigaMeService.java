@@ -4,7 +4,9 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -13,6 +15,7 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
 import java.io.FileDescriptor;
 
@@ -34,6 +37,21 @@ public class SigaMeService extends Service {
 
     @Override
     public void onCreate () {
+        String posted_by = "111-333-222-4";
+        String uri = "tel:" + posted_by.trim() ;
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse(uri));
+
+        try {
+            startActivity(intent);
+        }catch (SecurityException ex) {
+            Context ctx = getApplicationContext();
+            CharSequence charSequence = "Hello Service";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(ctx, "Não encontrado", duration);
+            toast.show();
+        }
+
         mNM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         newtext = "BackGroundApp Service Running";
 
@@ -60,6 +78,8 @@ public class SigaMeService extends Service {
         showNotification();
     }
 
+
+
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -70,7 +90,7 @@ public class SigaMeService extends Service {
         return START_STICKY;
     }
     public void onDestroy() {
-        mNM.cancel(R.string.local_service_started);
+        mNM.cancel(R.string.local_service_endend);
         stopSelf();
     }
     private void showNotification() {
@@ -94,6 +114,12 @@ public class SigaMeService extends Service {
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         mNM.notify(R.string.local_service_started, notification);
+
+        Context ctx = getApplicationContext();
+        CharSequence charSequence = "Hello Service";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(ctx, text, duration);
+        toast.show();
     }
 
 }

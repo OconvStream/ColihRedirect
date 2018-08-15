@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Colih Redirect</string>
     <string name="local_service_started">Local Service Started !</string>
-    <string name="local_service_endend">Local Service Endend !</string>
+    <string name="local_service_ended">Local Service Ended !</string>
+    <string name="grant_permission">It is necessary to grant phone call permission for this app!</string>
 </resources>

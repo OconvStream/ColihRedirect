@@ -8,44 +8,26 @@ import android.os.IBinder;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
+import app.notofficial.jw.colihredirect.PDO.MMIDial;
+
 public class SigaMeService extends Service {
     public SigaMeService() {
     }
 
-    private TelephonyManager mTelephonyManager;
     public class LocalBinder extends Binder {
         SigaMeService getService() {
             return SigaMeService.this;
         }
     }
 
-    private boolean isTelephonyEnabled() {
-        if (mTelephonyManager != null) {
-            if (mTelephonyManager.getSimState() ==
-                    TelephonyManager.SIM_STATE_READY) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     @Override
     public void onCreate () {
+        MMIDial mmiDial = new MMIDial("081", "997334642");
+        mmiDial.prepareDial(MMIDial.DEACTIVATE);
+        mmiDial.dial(this);
 
-        mTelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-
-        if (isTelephonyEnabled()) {
-            //Log.d(TAG, getString(R.string.telephony_enabled));
-            // Todo: Register the PhoneStateListener.
-
-            // Todo: Check for permission here.
-
-        } else {
-            Toast.makeText(this,
-                    "Telephony not enabled",
-                    Toast.LENGTH_LONG).show();
-        }
-
+        mmiDial.prepareDial(MMIDial.ACTIVATE);
+        mmiDial.dial(this);
     }
 
     @Override
@@ -57,14 +39,8 @@ public class SigaMeService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         return START_STICKY;
     }
+
     public void onDestroy() {
         stopSelf();
     }
-    private void showNotification() {
-        Context ctx = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(ctx, "Notificação", duration);
-        toast.show();
-    }
-
 }

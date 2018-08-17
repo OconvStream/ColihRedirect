@@ -1,12 +1,12 @@
 package app.notofficial.jw.colihredirect.PDO;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 
 import app.notofficial.jw.colihredirect.R;
+import app.notofficial.jw.colihredirect.Util.AndroidUtil;
 
 public class MMIDial {
 
@@ -21,20 +21,20 @@ public class MMIDial {
 
     private static final String CALL_COMMAND_PREFIX = "tel:";
 
-    private static final int ACTIVATE   = 1;
-    private static final int DEACTIVATE = 2;
+    public static final int ACTIVATE   = 1;
+    public static final int DEACTIVATE = 2;
 
     private String areaCode = null;
     private String number   = null;
     private Intent executeMMI;
 
-    MMIDial(String areaCode, String number) {
+    public MMIDial(String areaCode, String number) {
         this.executeMMI = new Intent(Intent.ACTION_CALL);
         this.areaCode   = areaCode;
         this.number     = number;
     }
 
-    private void prepareDial(int option) {
+    public void prepareDial(int option) {
         if( option == ACTIVATE ) {
             if(number != null) {
                 String activateCode = ACTIVATE_COMMAND_PREFIX + ACTIVATE_DEACTIVATE_SIGA_ME_REDIRECT_ALL_CODE + ACTIVATE_COMMAND_PREFIX;
@@ -44,22 +44,16 @@ public class MMIDial {
         }
         else if ( option == DEACTIVATE ) {
             String deactivateCode = DEACTIVATE_COMMAND_PREFIX_SUFFIX + ACTIVATE_DEACTIVATE_SIGA_ME_REDIRECT_ALL_CODE + DEACTIVATE_COMMAND_PREFIX_SUFFIX;
-            String deactivateURI = deactivateCode;
+            String deactivateURI = CALL_COMMAND_PREFIX + deactivateCode;
             this.executeMMI.setData(Uri.parse(deactivateURI));
         }
-
     }
 
-    public void Dial(Service service) {
+    public void dial(Context service) {
         try {
             service.startActivity(this.executeMMI);
         }catch (SecurityException ex) {
-            Context ctx = service.getApplicationContext();
-
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(ctx, R.string.grant_permission, duration);
-            toast.show();
+            AndroidUtil.showToast ( service, service.getString( R.string.grant_permission ), Toast.LENGTH_SHORT );
         }
     }
 

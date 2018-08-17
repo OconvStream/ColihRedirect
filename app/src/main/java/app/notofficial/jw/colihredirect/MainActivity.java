@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
 
 import app.notofficial.jw.colihredirect.Impl.StartServiceButtonClickImpl;
 import app.notofficial.jw.colihredirect.Util.PermissionCodes;
@@ -41,13 +40,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        stopService(new Intent(MainActivity.this,
-                SigaMeService.class));
-        if(isService)
-        {
-            TextView tv = (TextView) findViewById(R.id.txtVw_Message);
-            tv.setText("Service Resumed");
-            isService = false;
-        }
+        stopService( new Intent(MainActivity.this, SigaMeService.class) );
     }
 }

@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Toast;
 
+import app.notofficial.jw.colihredirect.R;
 import app.notofficial.jw.colihredirect.SigaMeService;
 import app.notofficial.jw.colihredirect.Util.AndroidUtil;
 import app.notofficial.jw.colihredirect.Util.PermissionCodes;
@@ -33,7 +34,7 @@ public class StartServiceButtonClickImpl implements View.OnClickListener, Activi
 
         }
         else {
-            AndroidUtil.showToast(this.context, "Sem permissão", Toast.LENGTH_LONG);
+            AndroidUtil.showToast(this.context, context.getString(R.string.grant_permission), Toast.LENGTH_LONG);
             requestPermission();
         }
     }

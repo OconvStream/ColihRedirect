@@ -2,9 +2,13 @@ package app.notofficial.jw.colihredirect.repository;
 
 import android.app.Application;
 import android.arch.persistence.room.Database;
+import android.os.AsyncTask;
+
+import java.util.List;
 
 import app.notofficial.jw.colihredirect.PhoneDao;
 import app.notofficial.jw.colihredirect.PhoneDatabase;
+import app.notofficial.jw.colihredirect.model.Phone;
 
 public class PhoneRepository {
 
@@ -17,8 +21,12 @@ public class PhoneRepository {
         mAllPhones = mPhoneDao.getAll();
     }
 
-    public List<User> getAllUsers() {
-        return mAllUsers;
+    public List<Phone> getmAllPhones() {
+        return mAllPhones;
+    }
+
+    public Phone getUser() {
+        return mPhoneDao.getNextPhoneToUse();
     }
 
     public void insert (Phone phone) {

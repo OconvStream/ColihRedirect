@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect.Impl;
+package app.notofficial.jw.colihredirect.adapter;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -14,9 +14,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import app.notofficial.jw.colihredirect.R;
-import app.notofficial.jw.colihredirect.SigaMeService;
-import app.notofficial.jw.colihredirect.Util.AndroidUtil;
-import app.notofficial.jw.colihredirect.Util.PermissionCodes;
+import app.notofficial.jw.colihredirect.service.SigaMeService;
+import app.notofficial.jw.colihredirect.util.AndroidUtil;
+import app.notofficial.jw.colihredirect.util.PermissionCodes;
 
 public class StartServiceButtonClickImpl implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
 

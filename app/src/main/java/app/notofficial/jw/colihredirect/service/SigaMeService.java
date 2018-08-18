@@ -1,14 +1,11 @@
-package app.notofficial.jw.colihredirect;
+package app.notofficial.jw.colihredirect.service;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
-import android.telephony.TelephonyManager;
-import android.widget.Toast;
 
-import app.notofficial.jw.colihredirect.PDO.MMIDial;
+import app.notofficial.jw.colihredirect.config.MMIDial;
 
 public class SigaMeService extends Service {
     public SigaMeService() {

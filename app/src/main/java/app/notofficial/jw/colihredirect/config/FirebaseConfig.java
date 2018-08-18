@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect;
+package app.notofficial.jw.colihredirect.config;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

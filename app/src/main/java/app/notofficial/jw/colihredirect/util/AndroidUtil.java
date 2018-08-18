@@ -1,9 +1,7 @@
-package app.notofficial.jw.colihredirect.Util;
+package app.notofficial.jw.colihredirect.util;
 
 import android.content.Context;
 import android.widget.Toast;
-
-import app.notofficial.jw.colihredirect.R;
 
 public class AndroidUtil {
 

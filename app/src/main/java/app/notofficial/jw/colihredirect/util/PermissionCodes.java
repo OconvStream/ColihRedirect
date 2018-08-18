@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect.Util;
+package app.notofficial.jw.colihredirect.util;
 
 public class PermissionCodes {
 

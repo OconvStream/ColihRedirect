@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect.PDO;
+package app.notofficial.jw.colihredirect.config;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.net.Uri;
 import android.widget.Toast;
 
 import app.notofficial.jw.colihredirect.R;
-import app.notofficial.jw.colihredirect.Util.AndroidUtil;
+import app.notofficial.jw.colihredirect.util.AndroidUtil;
 
 public class MMIDial {
 

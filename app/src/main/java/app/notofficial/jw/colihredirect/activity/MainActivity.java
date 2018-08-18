@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect;
+package app.notofficial.jw.colihredirect.activity;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -6,8 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 
-import app.notofficial.jw.colihredirect.Impl.StartServiceButtonClickImpl;
-import app.notofficial.jw.colihredirect.Util.PermissionCodes;
+import app.notofficial.jw.colihredirect.adapter.StartServiceButtonClickImpl;
+import app.notofficial.jw.colihredirect.R;
+import app.notofficial.jw.colihredirect.service.SigaMeService;
+import app.notofficial.jw.colihredirect.util.PermissionCodes;
 
 public class MainActivity extends AppCompatActivity {
 

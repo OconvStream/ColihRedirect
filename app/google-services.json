@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "902162869614",
+    "firebase_url": "https://colihredirect.firebaseio.com",
+    "project_id": "colihredirect",
+    "storage_bucket": "colihredirect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902162869614:android:4764947aafa67432",
+        "android_client_info": {
+          "package_name": "app.notofficial.jw.colihredirect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902162869614-3r5fl2iipikojrhelgafvgm341c507r2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.notofficial.jw.colihredirect",
+            "certificate_hash": "0085849a2652e84a913b40d865da15237435e7fe"
+          }
+        },
+        {
+          "client_id": "902162869614-frposimt4b5hed6pcm85362f50928nha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDM-N7ILckcR-oaxqkpTkuvKVTUp7_aXzU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902162869614-frposimt4b5hed6pcm85362f50928nha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,7 +13,7 @@ public class Phone {
     private String numberOfPhone;
 
     @ColumnInfo(name = "is_active")
-    private boolean active = false;
+    private boolean active;
 
     public int getId() {
         return id;
@@ -38,4 +38,5 @@ public class Phone {
     public void setActive(boolean active) {
         this.active = active;
     }
+
 }

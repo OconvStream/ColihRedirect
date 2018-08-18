@@ -16,6 +16,9 @@ public interface PhoneDao {
     @Query("SELECT * FROM Phone")
     List<Phone> getAll();
 
+    @Query("SELECT * FROM Phone where id = id + 1 and id <> is_active")
+    Phone getNextPhoneToUse();
+
     @Insert
     void insert(Phone user);
 

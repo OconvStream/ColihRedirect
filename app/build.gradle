@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "app.notofficial.jw.colihredirect"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -28,4 +28,16 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:11.6.2'
     implementation 'com.google.firebase:firebase-database:11.6.2'
     implementation 'com.google.firebase:firebase-auth:11.6.2'
+
+    //room
+    def room_version = "1.1.1"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    testImplementation "android.arch.persistence.room:testing:$room_version"
+    implementation "android.arch.lifecycle:extensions:$room_version"
+    implementation "android.arch.lifecycle:viewmodel:$room_version"
+    implementation "android.arch.lifecycle:livedata:$room_version"
+    implementation "android.arch.lifecycle:runtime:$room_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$room_version"
+    implementation "android.arch.lifecycle:common-java8:$room_version"
 }

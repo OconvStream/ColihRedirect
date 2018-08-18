@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect;
+package app.notofficial.jw.colihredirect.dao;
 
 
 import android.arch.persistence.room.Dao;

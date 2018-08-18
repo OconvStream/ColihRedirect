@@ -1,13 +1,12 @@
 package app.notofficial.jw.colihredirect.repository;
 
 import android.app.Application;
-import android.arch.persistence.room.Database;
 import android.os.AsyncTask;
 
 import java.util.List;
 
-import app.notofficial.jw.colihredirect.PhoneDao;
-import app.notofficial.jw.colihredirect.PhoneDatabase;
+import app.notofficial.jw.colihredirect.dao.PhoneDao;
+import app.notofficial.jw.colihredirect.database.PhoneDatabase;
 import app.notofficial.jw.colihredirect.model.Phone;
 
 public class PhoneRepository {

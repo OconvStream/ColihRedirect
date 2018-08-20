@@ -40,4 +40,8 @@ dependencies {
     implementation "android.arch.lifecycle:runtime:$room_version"
     annotationProcessor "android.arch.lifecycle:compiler:$room_version"
     implementation "android.arch.lifecycle:common-java8:$room_version"
+
+
+    implementation 'com.evernote:android-job:1.2.4'
+
 }

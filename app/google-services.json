@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "564881865024",
+    "firebase_url": "https://colih-recife.firebaseio.com",
+    "project_id": "colih-recife",
+    "storage_bucket": "colih-recife.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564881865024:android:b59d2b1f732276f83922a5",
+        "android_client_info": {
+          "package_name": "app.notofficial.jw.colihredirect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "564881865024-itpttkihpe8i2ut9v4leo22dtpg2tuvh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1PhlHCM3lJBGpJZQCUa3m3-gBLCTtnLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "564881865024-itpttkihpe8i2ut9v4leo22dtpg2tuvh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

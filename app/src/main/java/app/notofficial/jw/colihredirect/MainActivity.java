@@ -1,12 +1,16 @@
 package app.notofficial.jw.colihredirect;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
+
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import app.notofficial.jw.colihredirect.Impl.StartServiceButtonClickImpl;
+import app.notofficial.jw.colihredirect.Util.AndroidUtil;
 import app.notofficial.jw.colihredirect.Util.PermissionCodes;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                AndroidUtil.scheduleJob(getApplicationContext());
 
         this.startServiceButton = findViewById(R.id.btn_startService);
         this.startButtonClick   = new StartServiceButtonClickImpl(this);

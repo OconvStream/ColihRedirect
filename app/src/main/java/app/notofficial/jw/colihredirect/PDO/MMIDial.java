@@ -51,9 +51,11 @@ public class MMIDial {
 
     public void dial(Context service) {
         try {
+            this.executeMMI.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             service.startActivity(this.executeMMI);
         }catch (SecurityException ex) {
             AndroidUtil.showToast ( service, service.getString( R.string.grant_permission ), Toast.LENGTH_SHORT );
+
         }
     }
 

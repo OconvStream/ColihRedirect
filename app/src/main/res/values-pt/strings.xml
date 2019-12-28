@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Redirecionador COLIH</string>
+    <string name="local_service_started">Serviço Local Iniciado !</string>
+    <string name="local_service_ended">Serviço Local Finalizado !</string>
+    <string name="grant_permission">É necessário permitir que o aplicativo realize ligações telefônicas!</string>
+</resources>

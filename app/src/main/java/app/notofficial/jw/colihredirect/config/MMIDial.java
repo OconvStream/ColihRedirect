@@ -4,13 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+
 import android.os.Looper;
 import android.os.Message;
+
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import android.os.Handler;
+
 
 import app.notofficial.jw.colihredirect.R;
 import app.notofficial.jw.colihredirect.util.AndroidUtil;
@@ -29,13 +32,11 @@ public class MMIDial {
     private static final String CALL_COMMAND_PREFIX = "tel:";
 
     public static final int ACTIVATE   = 1;
-    public static final int DEACTIVATE = 2;
+    private static final int DEACTIVATE = 2;
 
-    private String areaCode = null;
-    private String number   = null;
+    private String areaCode ;
+    private String number;
     private Intent executeMMI;
-
-    private Uri activateURI;
 
     public MMIDial(String areaCode, String number) {
         this.executeMMI = new Intent(Intent.ACTION_CALL);
@@ -47,7 +48,7 @@ public class MMIDial {
         if( option == ACTIVATE ) {
             if(number != null) {
                 String activateCode = ACTIVATE_COMMAND_PREFIX + ACTIVATE_DEACTIVATE_SIGA_ME_REDIRECT_ALL_CODE + ACTIVATE_COMMAND_PREFIX;
-                activateURI = Uri.parse(CALL_COMMAND_PREFIX + activateCode + areaCode + number + ACTIVATE_COMMAND_SUFFIX);
+                Uri activateURI = Uri.parse(CALL_COMMAND_PREFIX + activateCode + areaCode + number + ACTIVATE_COMMAND_SUFFIX);
                 this.executeMMI.setData(activateURI);
             }
         }
@@ -67,7 +68,6 @@ public class MMIDial {
 
             } else {
 
-
                 TelephonyManager telephonyManager = (TelephonyManager) service.getSystemService(Context.TELEPHONY_SERVICE);
                 Handler handler = new Handler(Looper.getMainLooper()) {
                     @Override
@@ -75,12 +75,16 @@ public class MMIDial {
                         Log.i("MMIDial", message.toString());
                     }
                 };
-
-                telephonyManager.sendUssdRequest(activateURI.toString(), new TelephonyManager.UssdResponseCallback() {
+                String activateCode = ACTIVATE_COMMAND_PREFIX + ACTIVATE_DEACTIVATE_SIGA_ME_REDIRECT_ALL_CODE + ACTIVATE_COMMAND_PREFIX;
+                String ussdRequest = activateCode + areaCode + number + "#";
+                Log.i("MMIDial", ussdRequest);
+                telephonyManager.sendUssdRequest(ussdRequest, new TelephonyManager.UssdResponseCallback() {
                     @Override
                     public void onReceiveUssdResponse(TelephonyManager telephonyManager, String request, CharSequence response) {
                         super.onReceiveUssdResponse(telephonyManager, request, response);
                         Log.i("MMIDial", "Code USSD Response " + response);
+                        //TODO Em versões futuras Nilton havia solictado que a aplicação confirmasse que o código USSD foi cadastrado com sucesso.
+                        // Também, por aqui é possível enviar a mensagem informando que a partir desse momento a pessoa já está trabalhando no plantão
                     }
 
                     @Override
@@ -92,16 +96,7 @@ public class MMIDial {
             }
 
         }catch (SecurityException ex) {
-            AndroidUtil.showToast ( service, service.getString( R.string.grant_permission ), Toast.LENGTH_SHORT );
-
+            AndroidUtil.showToast(service, service.getString(R.string.grant_permission), Toast.LENGTH_SHORT);
         }
-    }
-
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 }

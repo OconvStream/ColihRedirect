@@ -92,7 +92,7 @@ public class SigaMeService extends Service {
                      }
                  }
 
-                 Schedule lastSchedule = null; //= Paper.book().read("schedule");
+                 Schedule lastSchedule = Paper.book().read("schedule");
 
                  if(scheduleFound != null) {
                      Log.i("SigaMeService", "Schedule found!");
@@ -112,12 +112,9 @@ public class SigaMeService extends Service {
                      Log.i("SigaMeService", "Saving current scheduled number ");
 
                      Paper.book().write("schedule", scheduleFound);
-
-//                     mmiDial.prepareDial(MMIDial.DEACTIVATE);
-//                     mmiDial.dial(this);
                  }
                  else {
-                     Log.w("SigaMeService", "No schedule found!");
+                     Log.w("SigaMeService", "No new schedule found!");
                  }
 
              }

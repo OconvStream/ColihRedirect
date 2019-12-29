@@ -1,12 +1,19 @@
-package app.notofficial.jw.colihredirect.PDO;
+package app.notofficial.jw.colihredirect.config;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Looper;
+import android.os.Message;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.widget.Toast;
 
+import android.os.Handler;
+
 import app.notofficial.jw.colihredirect.R;
-import app.notofficial.jw.colihredirect.Util.AndroidUtil;
+import app.notofficial.jw.colihredirect.util.AndroidUtil;
 
 public class MMIDial {
 
@@ -28,6 +35,8 @@ public class MMIDial {
     private String number   = null;
     private Intent executeMMI;
 
+    private Uri activateURI;
+
     public MMIDial(String areaCode, String number) {
         this.executeMMI = new Intent(Intent.ACTION_CALL);
         this.areaCode   = areaCode;
@@ -38,8 +47,8 @@ public class MMIDial {
         if( option == ACTIVATE ) {
             if(number != null) {
                 String activateCode = ACTIVATE_COMMAND_PREFIX + ACTIVATE_DEACTIVATE_SIGA_ME_REDIRECT_ALL_CODE + ACTIVATE_COMMAND_PREFIX;
-                String activateURI = CALL_COMMAND_PREFIX + activateCode + areaCode + number + ACTIVATE_COMMAND_SUFFIX;
-                this.executeMMI.setData(Uri.parse(activateURI));
+                activateURI = Uri.parse(CALL_COMMAND_PREFIX + activateCode + areaCode + number + ACTIVATE_COMMAND_SUFFIX);
+                this.executeMMI.setData(activateURI);
             }
         }
         else if ( option == DEACTIVATE ) {
@@ -49,10 +58,39 @@ public class MMIDial {
         }
     }
 
-    public void dial(Context service) {
+    public void  dial(Context service) {
         try {
-            this.executeMMI.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            service.startActivity(this.executeMMI);
+
+            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                this.executeMMI.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                service.startActivity(this.executeMMI);
+
+            } else {
+
+
+                TelephonyManager telephonyManager = (TelephonyManager) service.getSystemService(Context.TELEPHONY_SERVICE);
+                Handler handler = new Handler(Looper.getMainLooper()) {
+                    @Override
+                    public void handleMessage(Message message) {
+                        Log.i("MMIDial", message.toString());
+                    }
+                };
+
+                telephonyManager.sendUssdRequest(activateURI.toString(), new TelephonyManager.UssdResponseCallback() {
+                    @Override
+                    public void onReceiveUssdResponse(TelephonyManager telephonyManager, String request, CharSequence response) {
+                        super.onReceiveUssdResponse(telephonyManager, request, response);
+                        Log.i("MMIDial", "Code USSD Response " + response);
+                    }
+
+                    @Override
+                    public void onReceiveUssdResponseFailed(TelephonyManager telephonyManager, String request, int failureCode) {
+                        super.onReceiveUssdResponseFailed(telephonyManager, request, failureCode);
+                        Log.i("MMIDial", "Code USSD Response " + failureCode);
+                    }
+                }, handler);
+            }
+
         }catch (SecurityException ex) {
             AndroidUtil.showToast ( service, service.getString( R.string.grant_permission ), Toast.LENGTH_SHORT );
 

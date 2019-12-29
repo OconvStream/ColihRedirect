@@ -6,7 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import app.notofficial.jw.colihredirect.Util.AndroidUtil;
+import app.notofficial.jw.colihredirect.util.AndroidUtil;
+
 
 public class AutoStart extends BroadcastReceiver {
     @Override

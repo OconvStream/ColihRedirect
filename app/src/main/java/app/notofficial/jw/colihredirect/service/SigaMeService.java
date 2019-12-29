@@ -1,8 +1,8 @@
-package app.notofficial.jw.colihredirect;
+package app.notofficial.jw.colihredirect.service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Binder;
+
 import android.os.IBinder;
 import android.util.Log;
 
@@ -18,20 +18,15 @@ import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import app.notofficial.jw.colihredirect.PDO.MMIDial;
+import app.notofficial.jw.colihredirect.config.MMIDial;
 import app.notofficial.jw.colihredirect.firebase.Schedule;
 import io.paperdb.Paper;
 
 public class SigaMeService extends Service {
     public SigaMeService() {
-    }
-
-    public class LocalBinder extends Binder {
-        SigaMeService getService() {
-            return SigaMeService.this;
-        }
     }
 
     @Override
@@ -61,31 +56,34 @@ public class SigaMeService extends Service {
     private void dial() {
 
         final Date currentDate = Calendar.getInstance().getTime();
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        final Locale brazil = new Locale("pt", "BR");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", brazil);
 
          FirebaseDatabase.getInstance().getReference().child("schedule").child(dateFormat.format(currentDate)).addListenerForSingleValueEvent(new ValueEventListener() {
              @Override
              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                 Schedule schedule = null;
+                 Schedule schedule;
                  Schedule scheduleFound = null;
 
 
-                 Date scheduledDate = null;
+                 Date scheduledDate;
                  for(DataSnapshot child : dataSnapshot.getChildren()) {
                      schedule = child.getValue(Schedule.class);
 
-                     SimpleDateFormat hourFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                     if(schedule == null)
+                         continue;
+
+                     SimpleDateFormat hourFormat = new SimpleDateFormat("yyyyMMddHHmmss", brazil);
 
                      try {
+
                          scheduledDate = hourFormat.parse(schedule.getDate() + schedule.getTime().replace(":", ""));
                      } catch (ParseException e) {
                          e.printStackTrace();
                          return;
                      }
-                     long curr = currentDate.getTime();
-                     long sche = scheduledDate.getTime();
+
                      long result = scheduledDate.getTime() - currentDate.getTime();
                      long inMinutes = TimeUnit.MILLISECONDS.toMinutes(result);
 
@@ -94,7 +92,7 @@ public class SigaMeService extends Service {
                      }
                  }
 
-                 Schedule lastSchedule = Paper.book().read("schedule");
+                 Schedule lastSchedule = null; //= Paper.book().read("schedule");
 
                  if(scheduleFound != null) {
                      Log.i("SigaMeService", "Schedule found!");

@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect.Impl;
+package app.notofficial.jw.colihredirect.adapter;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -16,9 +16,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import app.notofficial.jw.colihredirect.R;
-import app.notofficial.jw.colihredirect.SigaMeService;
-import app.notofficial.jw.colihredirect.Util.AndroidUtil;
-import app.notofficial.jw.colihredirect.Util.PermissionCodes;
+import app.notofficial.jw.colihredirect.service.SigaMeService;
+import app.notofficial.jw.colihredirect.util.AndroidUtil;
+
 
 public class StartServiceButtonClickImpl implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -51,7 +51,8 @@ public class StartServiceButtonClickImpl implements View.OnClickListener, Activi
     }
 
     private void requestPermission() {
-        ActivityCompat.requestPermissions((Activity) this.context, new String[]{Manifest.permission.CALL_PHONE}, PermissionCodes.PERMISSIONS_REQUEST_CALL_PHONE);
+        //PERMISSIONS_REQUEST_CALL_PHONE = 16
+        ActivityCompat.requestPermissions((Activity) this.context, new String[]{Manifest.permission.CALL_PHONE}, 16);
     }
 
     @Override

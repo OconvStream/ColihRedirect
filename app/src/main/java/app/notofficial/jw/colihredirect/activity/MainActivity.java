@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect;
+package app.notofficial.jw.colihredirect.activity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -9,14 +9,14 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import app.notofficial.jw.colihredirect.Impl.StartServiceButtonClickImpl;
-import app.notofficial.jw.colihredirect.Util.AndroidUtil;
-import app.notofficial.jw.colihredirect.Util.PermissionCodes;
+import app.notofficial.jw.colihredirect.R;
+import app.notofficial.jw.colihredirect.adapter.StartServiceButtonClickImpl;
+import app.notofficial.jw.colihredirect.service.SigaMeService;
+import app.notofficial.jw.colihredirect.util.AndroidUtil;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    public static boolean isService = false;
-    private Button startServiceButton;
     private StartServiceButtonClickImpl startButtonClick;
 
     @Override
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                 AndroidUtil.scheduleJob(getApplicationContext());
 
-        this.startServiceButton = findViewById(R.id.btn_startService);
+        Button startServiceButton = findViewById(R.id.btn_startService);
         this.startButtonClick   = new StartServiceButtonClickImpl(this);
 
         startServiceButton.setOnClickListener(this.startButtonClick);
@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == PermissionCodes.PERMISSIONS_REQUEST_CALL_PHONE) {
+        //PERMISSIONS_REQUEST_CALL_PHONE = 16
+        if (requestCode == 16) {
             this.startButtonClick.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }

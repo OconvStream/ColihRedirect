@@ -1,4 +1,4 @@
-package app.notofficial.jw.colihredirect.Util;
+package app.notofficial.jw.colihredirect.util;
 
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
-import app.notofficial.jw.colihredirect.R;
 import app.notofficial.jw.colihredirect.SigaMeJobService;
 
 public class AndroidUtil {

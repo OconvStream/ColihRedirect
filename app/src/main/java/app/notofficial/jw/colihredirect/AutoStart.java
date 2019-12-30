@@ -15,7 +15,6 @@ public class AutoStart extends BroadcastReceiver {
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             AndroidUtil.scheduleJob(context);
-           // context.startService(new Intent(context, SigaMeService.class));
         }else {
 
         }

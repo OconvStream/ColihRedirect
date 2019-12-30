@@ -22,11 +22,8 @@ public class AndroidUtil {
     public static void scheduleJob(Context context) {
         ComponentName serviceComponent = new ComponentName(context, SigaMeJobService.class);
         JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
-        builder.setMinimumLatency(30000); // wait at least
-        builder.setOverrideDeadline(6 * 10000); // maximum delay
-        //builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED); // require unmetered network
-        //builder.setRequiresDeviceIdle(true); // device should be idle
-        //builder.setRequiresCharging(false); // we don't care if the device is charging or not
+        builder.setMinimumLatency(3000); // wait at least
+        builder.setOverrideDeadline(6 * 1000); // maximum delay
         JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
         jobScheduler.schedule(builder.build());
     }

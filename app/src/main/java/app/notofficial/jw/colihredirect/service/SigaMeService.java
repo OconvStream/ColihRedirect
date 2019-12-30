@@ -87,7 +87,7 @@ public class SigaMeService extends Service {
                      long result = scheduledDate.getTime() - currentDate.getTime();
                      long inMinutes = TimeUnit.MILLISECONDS.toMinutes(result);
 
-                     if(inMinutes >= 0 && inMinutes < 26) {
+                     if(inMinutes >= 0 && inMinutes < 16) {
                          scheduleFound = schedule;
                      }
                  }

@@ -59,7 +59,7 @@ public class MMIDial {
         }
     }
 
-    public void  dial(Context service) {
+    public void  dial(final Context service) {
         try {
 
             if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -82,6 +82,7 @@ public class MMIDial {
                     @Override
                     public void onReceiveUssdResponse(TelephonyManager telephonyManager, String request, CharSequence response) {
                         super.onReceiveUssdResponse(telephonyManager, request, response);
+                        Toast.makeText(service, "Código Ussd executado com sucesso!", Toast.LENGTH_SHORT).show();
                         Log.i("MMIDial", "Code USSD Response " + response);
                         //TODO Em versões futuras Nilton havia solictado que a aplicação confirmasse que o código USSD foi cadastrado com sucesso.
                         // Também, por aqui é possível enviar a mensagem informando que a partir desse momento a pessoa já está trabalhando no plantão

@@ -4,4 +4,7 @@
     <string name="local_service_started">Serviço Local Iniciado !</string>
     <string name="local_service_ended">Serviço Local Finalizado !</string>
     <string name="grant_permission">É necessário permitir que o aplicativo realize ligações telefônicas!</string>
+    <string name="finish_job_button_text">Cancelar último agendamento</string>
+    <string name="cancel_all_jobs_button_text">Cancelar Todos</string>
+    <string name="schedule_job_button_text">Iniciar Redirecionador</string>
 </resources>

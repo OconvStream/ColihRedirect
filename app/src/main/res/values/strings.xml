@@ -3,7 +3,7 @@
     <string name="local_service_started">Local Service Started !</string>
     <string name="local_service_ended">Local Service Ended !</string>
     <string name="grant_permission">It is necessary to grant phone call permission for this app!</string>
-    <string name="finish_job_button_text">Cancelar último agendamento</string>
-    <string name="cancel_all_jobs_button_text">Cancelar Todos</string>
-    <string name="schedule_job_button_text">Iniciar Redirecionador</string>
+    <string name="finish_job_button_text">Cancel last scheduling</string>
+    <string name="cancel_all_jobs_button_text">Cancel All</string>
+    <string name="schedule_job_button_text">Start redirect</string>
 </resources>
